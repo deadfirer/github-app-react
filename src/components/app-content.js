@@ -1,15 +1,15 @@
 'user strict'
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Search from './search';
 import UserInfo from './user-info';
 import Actions from './actions';
 import Repos from './repos';
 
-const AppContent = ({userinfo, repos, starred}) => (
+const AppContent = ({userinfo, repos, starred, handleSearch}) => (
 
 <div className='app'>
-    <Search />               
+    <Search handleSearch={handleSearch} />               
     {!!userinfo && <UserInfo userinfo={userinfo}/>}
     
     {!!userinfo && <Actions />}
@@ -35,9 +35,9 @@ const AppContent = ({userinfo, repos, starred}) => (
 );
 
 AppContent.propTypes = {
-    userinfo: React.PropTypes.object.isRequired,
-    repos: React.PropTypes.string.isRequired,
-    starred: React.PropTypes.isRequired
+    userinfo: PropTypes.object,
+    repos: PropTypes.array,
+    starred: PropTypes.array
 }
 
 export default AppContent;
