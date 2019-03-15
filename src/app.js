@@ -1,4 +1,4 @@
-'use strict'
+'use struct'
 
 import React from 'react';
 import ajax from '@fdaciuk/ajax';
@@ -12,6 +12,8 @@ class App extends React.Component{
             repos: [],
             starred:[]
         }
+
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     getGitHubApiUrl (username , type) {
@@ -27,10 +29,10 @@ class App extends React.Component{
         const value = e.target.value;
         const keyCode = e.which || e.keyCode;
         const ENTER = 13;
-        const target = e.target;
+        //const target = e.target;
         
         if (keyCode == ENTER) {
-            target.disabled = true;
+            //target.disabled = true;
             this.setState({ isFetching:true });
             ajax().get( this.getGitHubApiUrl(value) )
             .then((result) => {
@@ -47,7 +49,7 @@ class App extends React.Component{
                     starred: []
                 })
             }).always(() =>{
-                target.disabled = false;
+                //target.disabled = false;
                 this.setState({ isFetching : false});
             }) 
         }
@@ -75,11 +77,8 @@ class App extends React.Component{
 
     render (){
         return <AppContent
-            userinfo={this.state.userinfo} 
-            repos={this.state.repos} 
-            starred={this.state.starred}
-            isFetching={this.state.isFetching} 
-            handleSearch={(e) => this.handleSearch(e)}
+            {...this.state}
+            handleSearch={this.handleSearch}
             getRepos={this.getRepos('repos')}
             getStarred={this.getRepos('starred')}
         />;

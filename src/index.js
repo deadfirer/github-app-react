@@ -1,4 +1,4 @@
-'use strict'
+'use struct'
 
 import React from 'react';
 import { render } from 'react-dom';

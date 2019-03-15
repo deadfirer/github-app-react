@@ -1,4 +1,4 @@
-'user strict'
+'user struct'
 
 import React, { PropTypes } from 'react';
 import Search from './search';
@@ -17,7 +17,7 @@ const AppContent = ({
 }) => (
 
     <div className='app'>
-        <Search handleSearch={handleSearch} />               
+        <Search isDisabled={isFetching} handleSearch={handleSearch} />               
         {isFetching && <div>Carregando...</div>}
         {!!userinfo && <UserInfo userinfo={userinfo}/>}
         
@@ -48,8 +48,13 @@ const AppContent = ({
 
 AppContent.propTypes = {
     userinfo: PropTypes.object,
-    repos: PropTypes.array,
-    starred: PropTypes.array
+    repos: PropTypes.array.isRequired,
+    starred: PropTypes.array.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    handleSearch: PropTypes.func.isRequired,
+    getRepos: PropTypes.func.isRequired,
+    getStarred: PropTypes.func.isRequired
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 }
 
 export default AppContent;

@@ -1,4 +1,4 @@
-'use strict'
+'use struct'
 
 import React, {PropTypes} from 'react';
 
